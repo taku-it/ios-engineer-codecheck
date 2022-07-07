@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import SDWebImage
 
 class ViewController2: UIViewController {
     
@@ -36,7 +37,8 @@ class ViewController2: UIViewController {
     }
     
     func getImage(){
-        
+        guard let repository = repository else { return }
+                ImgView.sd_setImage(with: URL(string: repository.owner.avatarUrl), completed: nil)
     }
     
 }
