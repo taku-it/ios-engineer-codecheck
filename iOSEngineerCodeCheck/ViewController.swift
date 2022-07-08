@@ -13,9 +13,8 @@ class ViewController: UITableViewController, UISearchBarDelegate {
     @IBOutlet weak var SchBr: UISearchBar!
     
     var repositories: [Repository] = []
-    
-    var task: URLSessionTask?
     var idx: Int!
+    var searchRepositoryModel = SearchRepositoryModel()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -31,11 +30,18 @@ class ViewController: UITableViewController, UISearchBarDelegate {
     }
     
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-        task?.cancel()
+        searchRepositoryModel.cancel()
     }
     
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
-        
+        let query = searchBar.text ?? ""
+        searchRepositoryModel.searchRepositories(query: query) { [weak self] repositories in
+            self?.repositories = repositories
+            
+            DispatchQueue.main.async {
+                self?.tableView.reloadData()
+            }
+        }
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
