@@ -13,7 +13,7 @@ class ViewController: UITableViewController, UISearchBarDelegate {
     @IBOutlet weak var SchBr: UISearchBar!
     
     var repositories: [Repository] = []
-    var idx: Int!
+    var idx: Int?
     var searchRepositoryModel = SearchRepositoryModel()
     
     override func viewDidLoad() {
@@ -47,7 +47,7 @@ class ViewController: UITableViewController, UISearchBarDelegate {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         
         if segue.identifier == "Detail"{
-            guard let detailVC = segue.destination as? ViewController2 else { return }
+            guard let detailVC = segue.destination as? ViewController2, let idx = idx else { return }
             detailVC.repository = self.repositories[idx]
         }
         
