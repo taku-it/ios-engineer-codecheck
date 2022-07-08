@@ -26,7 +26,7 @@ class ViewController2: UIViewController {
         
         guard let repository = repository else { return }
         
-        LangLbl.text = "Written in \(repository.language)"
+        LangLbl.text = "Written in \(repository.language ?? "")"
         StrsLbl.text = "\(repository.stargazersCount) stars"
         WchsLbl.text = "\(repository.watchersCount) watchers"
         FrksLbl.text = "\(repository.forksCount) forks"
