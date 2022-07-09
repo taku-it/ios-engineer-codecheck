@@ -14,13 +14,18 @@ class SearchRepositoryModel {
     
     func searchRepositories(query: String, completion: @escaping ([Repository]) -> ()) {
         
-        guard let encodedQuery = query.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed), let url = URL(string: "https://api.github.com/search/repositories?q=\(encodedQuery)") else { return }
+        guard let encodedQuery =
+                query.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed),
+              let url =
+                URL(string: "https://api.github.com/search/repositories?q=\(encodedQuery)")
+        else { return }
         
         let request = URLRequest(url: url)
         let decoder = JSONDecoder()
         decoder.keyDecodingStrategy = .convertFromSnakeCase
         
-        task = URLSession.shared.dataTask(with: request, completionHandler: { (data, _, error) in
+        task = URLSession.shared.dataTask(with: request, completionHandler: {
+            (data, _, error) in
             guard let data = data else { return }
             
             do {

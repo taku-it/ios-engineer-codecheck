@@ -23,7 +23,6 @@ class SearchRepositoryViewController: UITableViewController {
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        
         if segue.identifier == "Detail"{
             guard let detailVC = segue.destination as? DetailViewController,
                   let index = row else { return }
@@ -32,12 +31,10 @@ class SearchRepositoryViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        
         return repositories.count
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        
         let cell = UITableViewCell()
         let repository = repositories[indexPath.row]
         cell.textLabel?.text = repository.fullName
@@ -47,7 +44,6 @@ class SearchRepositoryViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        
         row = indexPath.row
         performSegue(withIdentifier: "Detail", sender: self)
     }
@@ -68,8 +64,7 @@ extension SearchRepositoryViewController: UISearchBarDelegate {
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         let query = searchBar.text ?? ""
         searchRepositoryModel.searchRepositories(query: query) {
-            [weak self] repositories in
-            
+            [weak self] (repositories) in
             self?.repositories = repositories
             
             DispatchQueue.main.async {
