@@ -36,7 +36,7 @@ class DetailViewController: UIViewController {
         
     }
     
-    func getImage(){
+    func getImage() {
         guard let repository = repository else { return }
             imageView.sd_setImage(with: URL(string: repository.owner.avatarUrl), completed: nil)
     }
