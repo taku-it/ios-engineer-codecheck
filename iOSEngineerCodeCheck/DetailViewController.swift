@@ -20,7 +20,10 @@ class DetailViewController: UIViewController {
     @IBOutlet weak var issuesLabel: UILabel!
     
     var repository: Repository?
-        
+    func inject(repository: Repository) {
+        self.repository = repository
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -38,7 +41,7 @@ class DetailViewController: UIViewController {
     
     func getImage() {
         guard let repository = repository else { return }
-            imageView.sd_setImage(with: URL(string: repository.owner.avatarUrl), completed: nil)
+        imageView.sd_setImage(with: URL(string: repository.owner.avatarUrl), completed: nil)
     }
     
 }
