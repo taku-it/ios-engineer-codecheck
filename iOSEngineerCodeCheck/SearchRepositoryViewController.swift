@@ -12,65 +12,59 @@ class SearchRepositoryViewController: UITableViewController {
 
     @IBOutlet weak var searchBar: UISearchBar!
     
-    var repositories: [Repository] = []
-    var row: Int?
-    var searchRepositoryModel = SearchRepositoryModel()
+    private var presenter: SearchRepositoryPresenterInput!
+    func inject(presenter: SearchRepositoryPresenterInput) {
+        self.presenter = presenter
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        searchBar.text = "GitHubのリポジトリを検索できるよー"
         searchBar.delegate = self
     }
     
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "Detail"{
-            guard let detailVC = segue.destination as? DetailViewController,
-                  let row = row else { return }
-            detailVC.repository = self.repositories[row]
-        }
-    }
-    
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return repositories.count
+        return presenter.numberOfRepo
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = UITableViewCell()
-        let repository = repositories[indexPath.row]
-        cell.textLabel?.text = repository.fullName
-        cell.detailTextLabel?.text = repository.language
-        cell.tag = indexPath.row
+        let repository = presenter.repository(forRow: indexPath.row)
+        cell.textLabel?.text = repository?.fullName
+        cell.detailTextLabel?.text = repository?.language
         return cell
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        row = indexPath.row
-        performSegue(withIdentifier: "Detail", sender: self)
+        presenter.didSelectRow(at: indexPath)
     }
     
 }
 
 extension SearchRepositoryViewController: UISearchBarDelegate {
     
-    func searchBarShouldBeginEditing(_ searchBar: UISearchBar) -> Bool {
-        searchBar.text = ""
-        return true
-    }
-    
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-        searchRepositoryModel.cancel()
+        presenter.didChangeText()
     }
     
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
-        let query = searchBar.text ?? ""
-        searchRepositoryModel.searchRepositories(query: query) {
-            [weak self] (repositories) in
-            self?.repositories = repositories
-            
-            DispatchQueue.main.async {
-                self?.tableView.reloadData()
-            }
-        }
+        let text = searchBar.text ?? ""
+        presenter.didTapSearchButton(text: text)
+    }
+    
+}
+
+extension SearchRepositoryViewController: SearchRepositoryPresenterOutput {
+    
+    func updateRepository() {
+        tableView.reloadData()
+    }
+    
+    func transitionToDetail(repository: Repository) {
+        guard let detailVC =
+                UIStoryboard(name: "Detail", bundle: nil).instantiateInitialViewController() as? DetailViewController
+        else { return }
+        detailVC.inject(repository: repository)
+        navigationController?.pushViewController(detailVC, animated: true)
     }
     
 }
