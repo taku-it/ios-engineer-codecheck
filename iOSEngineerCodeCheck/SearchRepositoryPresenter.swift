@@ -13,10 +13,11 @@ protocol SearchRepositoryPresenterInput {
     func repository(forRow row:Int) -> Repository?
     func didSelectRow(at indexPath: IndexPath)
     func didTapSearchButton(text: String?)
+    func didChangeText()
 }
 
 protocol SearchRepositoryPresenterOutput: AnyObject {
-    func updateRepository(repositories: [Repository])
+    func updateRepository()
     func transitionToDetail(repository: Repository)
 }
 
@@ -50,10 +51,13 @@ final class SearchRepositoryPresenter: SearchRepositoryPresenterInput {
         
         model.searchRepositories(query: query) { [weak self] (repositories) in
             DispatchQueue.main.async {
-                self?.view?.updateRepository(repositories: repositories)
+                self?.view?.updateRepository()
             }
         }
     }
     
+    func didChangeText() {
+        model.cancel()
+    }
     
 }
