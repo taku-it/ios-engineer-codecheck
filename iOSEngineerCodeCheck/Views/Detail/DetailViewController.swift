@@ -20,12 +20,14 @@ class DetailViewController: UIViewController {
     @IBOutlet weak var issuesLabel: UILabel!
     
     var repository: Repository?
-        
+    func inject(repository: Repository) {
+        self.repository = repository
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         guard let repository = repository else { return }
-        
         languageLabel.text = "Written in \(repository.language ?? "")"
         stargazersLabel.text = "\(repository.stargazersCount) stars"
         watchersLabel.text = "\(repository.watchersCount) watchers"
@@ -33,12 +35,11 @@ class DetailViewController: UIViewController {
         issuesLabel.text = "\(repository.openIssuesCount) open issues"
         titleLabel.text = repository.fullName
         getImage()
-        
     }
     
     func getImage() {
         guard let repository = repository else { return }
-            imageView.sd_setImage(with: URL(string: repository.owner.avatarUrl), completed: nil)
+        imageView.sd_setImage(with: URL(string: repository.owner.avatarUrl), completed: nil)
     }
     
 }

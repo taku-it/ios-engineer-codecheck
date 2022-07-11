@@ -8,9 +8,16 @@
 
 import Foundation
 
-class SearchRepositoryModel {
-    
+protocol SearchRepositoryModelInput {
+    var task: URLSessionTask? { get }
+    var repositories: [Repository] { get }
+    func searchRepositories(query: String, completion: @escaping ([Repository]) -> ())
+    func cancel()
+}
+
+final class SearchRepositoryModel: SearchRepositoryModelInput {
     var task: URLSessionTask?
+    var repositories: [Repository] = []
     
     func searchRepositories(query: String, completion: @escaping ([Repository]) -> ()) {
         
@@ -25,11 +32,12 @@ class SearchRepositoryModel {
         decoder.keyDecodingStrategy = .convertFromSnakeCase
         
         task = URLSession.shared.dataTask(with: request, completionHandler: {
-            (data, _, error) in
+            [weak self] (data, _, error) in
             guard let data = data else { return }
             
             do {
                 let repositories: Repositories = try decoder.decode(Repositories.self, from: data)
+                self?.repositories = repositories.items
                 completion(repositories.items)
                 
             } catch let error {
