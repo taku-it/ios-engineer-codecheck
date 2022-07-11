@@ -28,7 +28,6 @@ class DetailViewController: UIViewController {
         super.viewDidLoad()
         
         guard let repository = repository else { return }
-        
         languageLabel.text = "Written in \(repository.language ?? "")"
         stargazersLabel.text = "\(repository.stargazersCount) stars"
         watchersLabel.text = "\(repository.watchersCount) watchers"
@@ -36,7 +35,6 @@ class DetailViewController: UIViewController {
         issuesLabel.text = "\(repository.openIssuesCount) open issues"
         titleLabel.text = repository.fullName
         getImage()
-        
     }
     
     func getImage() {

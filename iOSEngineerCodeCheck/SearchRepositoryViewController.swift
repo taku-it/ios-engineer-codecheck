@@ -19,6 +19,7 @@ class SearchRepositoryViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         searchBar.delegate = self
     }
     

@@ -14,7 +14,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var window: UIWindow?
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-        if let searchRepositoryVC = UIStoryboard(name: "SearchRepository", bundle: nil).instantiateInitialViewController() as? SearchRepositoryViewController {
+        if let searchRepositoryVC =
+            UIStoryboard(name: "SearchRepository", bundle: nil).instantiateInitialViewController() as? SearchRepositoryViewController {
             let navigationController = UINavigationController(rootViewController: searchRepositoryVC)
             
             let model = SearchRepositoryModel()
