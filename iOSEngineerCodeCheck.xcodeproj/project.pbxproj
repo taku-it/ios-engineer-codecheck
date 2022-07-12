@@ -28,6 +28,7 @@
 		A8EFA61E287E09C10051D40F /* GitHubRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8EFA61D287E09C10051D40F /* GitHubRequest.swift */; };
 		A8EFA620287E09E50051D40F /* HTTPMethod.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8EFA61F287E09E50051D40F /* HTTPMethod.swift */; };
 		A8EFA622287E0ADC0051D40F /* GitHubAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8EFA621287E0ADC0051D40F /* GitHubAPI.swift */; };
+		A8EFA624287E0DBA0051D40F /* HTTPClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8EFA623287E0DBA0051D40F /* HTTPClient.swift */; };
 		BFD945DF244DC5E80012785A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFD945DE244DC5E80012785A /* AppDelegate.swift */; };
 		BFD945E8244DC5EB0012785A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BFD945E7244DC5EB0012785A /* Assets.xcassets */; };
 		BFD945EB244DC5EB0012785A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BFD945E9244DC5EB0012785A /* LaunchScreen.storyboard */; };
@@ -79,6 +80,7 @@
 		A8EFA61D287E09C10051D40F /* GitHubRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GitHubRequest.swift; sourceTree = "<group>"; };
 		A8EFA61F287E09E50051D40F /* HTTPMethod.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HTTPMethod.swift; sourceTree = "<group>"; };
 		A8EFA621287E0ADC0051D40F /* GitHubAPI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GitHubAPI.swift; sourceTree = "<group>"; };
+		A8EFA623287E0DBA0051D40F /* HTTPClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HTTPClient.swift; sourceTree = "<group>"; };
 		B56B75E6DA9E64041E05E72E /* Pods-iOSEngineerCodeCheck.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iOSEngineerCodeCheck.release.xcconfig"; path = "Target Support Files/Pods-iOSEngineerCodeCheck/Pods-iOSEngineerCodeCheck.release.xcconfig"; sourceTree = "<group>"; };
 		BFD945DB244DC5E80012785A /* iOSEngineerCodeCheck.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = iOSEngineerCodeCheck.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BFD945DE244DC5E80012785A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -134,6 +136,7 @@
 		A8EFA58C287C0EF50051D40F /* GitHubAPI */ = {
 			isa = PBXGroup;
 			children = (
+				A8EFA623287E0DBA0051D40F /* HTTPClient.swift */,
 				A8EFA621287E0ADC0051D40F /* GitHubAPI.swift */,
 				A8EFA61F287E09E50051D40F /* HTTPMethod.swift */,
 				A8EFA61D287E09C10051D40F /* GitHubRequest.swift */,
@@ -495,6 +498,7 @@
 				A8EFA61A287E07C90051D40F /* GitHubAPIError.swift in Sources */,
 				A8EFA60A287DFBAD0051D40F /* User.swift in Sources */,
 				A8EFA620287E09E50051D40F /* HTTPMethod.swift in Sources */,
+				A8EFA624287E0DBA0051D40F /* HTTPClient.swift in Sources */,
 				A8EFA59D287C0F0F0051D40F /* DetailViewController.swift in Sources */,
 				A8EFA61E287E09C10051D40F /* GitHubRequest.swift in Sources */,
 				A8EFA59B287C0F0F0051D40F /* SearchRepositoryModel.swift in Sources */,
