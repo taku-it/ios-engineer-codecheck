@@ -8,7 +8,7 @@
 
 import UIKit
 
-class SearchRepositoryViewController: UITableViewController {
+final class SearchRepositoryViewController: UITableViewController {
 
     @IBOutlet weak var searchBar: UISearchBar!
     
@@ -56,7 +56,7 @@ extension SearchRepositoryViewController: UISearchBarDelegate {
 
 extension SearchRepositoryViewController: SearchRepositoryPresenterOutput {
     
-    func updateRepository() {
+    func updateRepository(_ repositories: [Repository]) {
         tableView.reloadData()
     }
     
