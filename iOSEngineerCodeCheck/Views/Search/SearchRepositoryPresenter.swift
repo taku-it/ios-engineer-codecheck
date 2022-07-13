@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import PKHUD
 
 protocol SearchRepositoryPresenterInput {
     var numberOfRepo: Int { get }
@@ -18,6 +19,9 @@ protocol SearchRepositoryPresenterInput {
 
 protocol SearchRepositoryPresenterOutput: AnyObject {
     func updateRepository(_ repositories: [Repository])
+    func displayError(_ title: String)
+    func displayProgress()
+    func hideHUD()
     func transitionToDetail(repository: Repository)
 }
 
@@ -47,6 +51,8 @@ final class SearchRepositoryPresenter: SearchRepositoryPresenterInput {
     }
     
     func didTapSearchButton(text: String?) {
+        view?.displayProgress()
+        
         guard let query = text else { return }
         guard !query.isEmpty else { return }
         
@@ -57,15 +63,20 @@ final class SearchRepositoryPresenter: SearchRepositoryPresenterInput {
                 
                 DispatchQueue.main.async {
                     self?.view?.updateRepository(repositories)
+                    self?.view?.hideHUD()
                 }
-            case .failure(let error):
-                //ユーザーにエラー発生を伝える(後述)
-                print(error)
+            case .failure(.connectionError):
+                self?.view?.displayError("通信に失敗しました")
+            case .failure(.responseParseError):
+                self?.view?.displayError("データの解釈に失敗しました")
+            case .failure(.apiError(let error)):
+                self?.view?.displayError(error.message)
             }
         }
     }
     
     func didChangeText() {
+        view?.hideHUD()
         model.cancel()
     }
     

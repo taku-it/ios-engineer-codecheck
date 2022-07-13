@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import PKHUD
 
 final class SearchRepositoryViewController: UITableViewController {
 
@@ -55,6 +56,20 @@ extension SearchRepositoryViewController: UISearchBarDelegate {
 }
 
 extension SearchRepositoryViewController: SearchRepositoryPresenterOutput {
+    
+    func hideHUD() {
+        HUD.hide()
+    }
+    
+    func displayProgress() {
+        HUD.dimsBackground = false
+        HUD.show(.progress)
+    }
+    
+    func displayError(_ text: String) {
+        HUD.dimsBackground = false
+        HUD.flash(.labeledError(title: text, subtitle: ""), delay: 2)
+    }
     
     func updateRepository(_ repositories: [Repository]) {
         tableView.reloadData()
