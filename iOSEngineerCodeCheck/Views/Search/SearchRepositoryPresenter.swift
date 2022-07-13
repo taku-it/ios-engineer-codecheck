@@ -22,6 +22,7 @@ protocol SearchRepositoryPresenterOutput: AnyObject {
 }
 
 final class SearchRepositoryPresenter: SearchRepositoryPresenterInput {
+    private var repositories: [Repository] = []
     
     private weak var view: SearchRepositoryPresenterOutput?
     private var model: SearchRepositoryModelInput
@@ -32,12 +33,12 @@ final class SearchRepositoryPresenter: SearchRepositoryPresenterInput {
     }
     
     var numberOfRepo: Int {
-        return model.repositories.count
+        return repositories.count
     }
     
     func repository(forRow row: Int) -> Repository? {
-        guard row < model.repositories.count else { return nil }
-        return model.repositories[row]
+        guard row < repositories.count else { return nil }
+        return repositories[row]
     }
     
     func didSelectRow(at indexPath: IndexPath) {
