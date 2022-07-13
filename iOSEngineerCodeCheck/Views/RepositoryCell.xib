@@ -28,7 +28,7 @@
                     <stackView opaque="NO" contentMode="scaleToFill" spacing="7" translatesAutoresizingMaskIntoConstraints="NO" id="scY-Tr-0CW">
                         <rect key="frame" x="20" y="8" width="374" height="54"/>
                         <subviews>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="fhw-ZU-8dm">
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="fhw-ZU-8dm">
                                 <rect key="frame" x="0.0" y="0.0" width="54" height="54"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="54" id="LeZ-Hi-rHP"/>
@@ -48,19 +48,18 @@
                         </subviews>
                         <constraints>
                             <constraint firstItem="tZm-Tr-NXe" firstAttribute="leading" secondItem="fhw-ZU-8dm" secondAttribute="trailing" constant="7" id="5ep-YO-1bn"/>
-                            <constraint firstItem="tZm-Tr-NXe" firstAttribute="top" secondItem="scY-Tr-0CW" secondAttribute="top" constant="12" id="fK3-Wx-ZCp"/>
+                            <constraint firstItem="tZm-Tr-NXe" firstAttribute="centerY" secondItem="fhw-ZU-8dm" secondAttribute="centerY" id="T2Y-py-26d"/>
                             <constraint firstAttribute="trailing" secondItem="tZm-Tr-NXe" secondAttribute="trailing" id="rPM-aE-SPI"/>
-                            <constraint firstAttribute="bottom" secondItem="tZm-Tr-NXe" secondAttribute="bottom" constant="12" id="vMy-A3-BcZ"/>
                         </constraints>
                     </stackView>
                 </subviews>
                 <constraints>
-                    <constraint firstItem="Vll-o4-5Ur" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="20" symbolic="YES" id="5jV-3E-VJ6"/>
+                    <constraint firstItem="Vll-o4-5Ur" firstAttribute="leading" secondItem="scY-Tr-0CW" secondAttribute="leading" id="49K-mO-pHb"/>
                     <constraint firstAttribute="bottom" secondItem="Vll-o4-5Ur" secondAttribute="bottom" constant="9.5" id="9Rq-FF-VBc"/>
                     <constraint firstAttribute="trailing" secondItem="scY-Tr-0CW" secondAttribute="trailing" constant="20" symbolic="YES" id="EsT-iH-4ez"/>
                     <constraint firstItem="Vll-o4-5Ur" firstAttribute="top" secondItem="scY-Tr-0CW" secondAttribute="bottom" constant="8" symbolic="YES" id="SXM-gH-H0g"/>
-                    <constraint firstAttribute="trailing" secondItem="Vll-o4-5Ur" secondAttribute="trailing" constant="20" symbolic="YES" id="d6F-Lh-j9z"/>
                     <constraint firstItem="scY-Tr-0CW" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="20" symbolic="YES" id="dSb-YR-zMC"/>
+                    <constraint firstItem="Vll-o4-5Ur" firstAttribute="trailing" secondItem="scY-Tr-0CW" secondAttribute="trailing" id="hAA-Sg-IN2"/>
                     <constraint firstItem="scY-Tr-0CW" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="8" id="iUu-7d-7lO"/>
                 </constraints>
             </tableViewCellContentView>
@@ -70,7 +69,7 @@
                 <outlet property="descriptionLabel" destination="Vll-o4-5Ur" id="maU-i8-hhn"/>
                 <outlet property="fullNameLabel" destination="tZm-Tr-NXe" id="86T-Z0-KRm"/>
             </connections>
-            <point key="canvasLocation" x="137.68115942028987" y="143.30357142857142"/>
+            <point key="canvasLocation" x="88" y="119"/>
         </tableViewCell>
     </objects>
 </document>
