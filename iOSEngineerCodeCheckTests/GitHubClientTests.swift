@@ -89,4 +89,24 @@ class GitHubClientTests: XCTestCase {
         
         wait(for: [apiExpectation], timeout: 3)
     }
+    
+    func testFailureByAPIError() {
+        httpClient.result = makeHTTPClientResult(
+            statusCode: 400,
+            json: GitHubAPIError.exampleJSON)
+
+        let request = GitHubAPI.SearchRepositories(keyword: "")
+        let apiExpectation = expectation(description: "")
+        gitHubClient.send(request: request) { result in
+            switch result {
+            case .failure(.apiError(let error)):
+                XCTAssertEqual(error.message, "Validation Failed")
+            default:
+                XCTFail("unexpected result: \(result)")
+            }
+            apiExpectation.fulfill()
+        }
+        
+        wait(for: [apiExpectation], timeout: 3)
+    }
 }
