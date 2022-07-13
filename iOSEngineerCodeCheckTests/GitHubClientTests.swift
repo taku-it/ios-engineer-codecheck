@@ -20,4 +20,15 @@ class GitHubClientTests: XCTestCase {
         gitHubClient = GitHubClient(httpClient: httpClient)
     }
     
+    private func makeHTTPClientResult(statusCode: Int, json: String) -> Result<(Data, HTTPURLResponse), Error> {
+        return .success((
+            json.data(using: .utf8)!,
+            HTTPURLResponse(
+                url: URL(string: "https://api.github.com/search/repositories")!,
+                statusCode: statusCode,
+                httpVersion: nil,
+                headerFields: nil)!
+        ))
+    }
+    
 }
