@@ -51,26 +51,27 @@ final class SearchRepositoryPresenter: SearchRepositoryPresenterInput {
     }
     
     func didTapSearchButton(text: String?) {
-        view?.displayProgress()
-        
         guard let query = text else { return }
-        guard !query.isEmpty else { return }
         
-        model.searchRepositories(query: query) { [weak self] result in
-            switch result {
-            case .success(let repositories):
-                self?.repositories = repositories
-                
-                DispatchQueue.main.async {
-                    self?.view?.updateRepository(repositories)
-                    self?.view?.hideHUD()
+        if !query.isEmpty {
+            view?.displayProgress()
+            
+            model.searchRepositories(query: query) { [weak self] result in
+                switch result {
+                case .success(let repositories):
+                    self?.repositories = repositories
+                    
+                    DispatchQueue.main.async {
+                        self?.view?.updateRepository(repositories)
+                        self?.view?.hideHUD()
+                    }
+                case .failure(.connectionError):
+                    self?.view?.displayError("通信に失敗しました")
+                case .failure(.responseParseError):
+                    self?.view?.displayError("データの解釈に失敗しました")
+                case .failure(.apiError(let error)):
+                    self?.view?.displayError(error.message)
                 }
-            case .failure(.connectionError):
-                self?.view?.displayError("通信に失敗しました")
-            case .failure(.responseParseError):
-                self?.view?.displayError("データの解釈に失敗しました")
-            case .failure(.apiError(let error)):
-                self?.view?.displayError(error.message)
             }
         }
     }
