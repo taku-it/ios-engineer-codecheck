@@ -34,10 +34,10 @@ final class DetailViewController: UIViewController {
     func setup() {
         guard let repository = repository else { return }
         languageLabel.text = "Written in \(repository.language ?? "")"
-        stargazersLabel.text = "\(repository.stargazersCount) stars"
-        watchersLabel.text = "\(repository.watchersCount) watchers"
-        forksLabel.text = "\(repository.forksCount) forks"
-        issuesLabel.text = "\(repository.openIssuesCount) open issues"
+        stargazersLabel.text = "stars \(repository.stargazersCount)"
+        watchersLabel.text = "watchers \(repository.watchersCount)"
+        forksLabel.text = "forks \(repository.forksCount)"
+        issuesLabel.text = "open issues \(repository.openIssuesCount)"
         titleLabel.text = repository.fullName
         descriptionLabel.text = repository.description
     }
