@@ -10,41 +10,29 @@ import Foundation
 
 protocol SearchRepositoryModelInput {
     var task: URLSessionTask? { get }
-    var repositories: [Repository] { get }
-    func searchRepositories(query: String, completion: @escaping ([Repository]) -> ())
+    func searchRepositories(query: String, completion: @escaping (Result<[Repository],GitHubClientError>) -> ())
     func cancel()
 }
 
 final class SearchRepositoryModel: SearchRepositoryModelInput {
     var task: URLSessionTask?
-    var repositories: [Repository] = []
     
-    func searchRepositories(query: String, completion: @escaping ([Repository]) -> ()) {
+    func searchRepositories(query: String, completion: @escaping (Result<[Repository],GitHubClientError>) -> ()) {
         
         guard let encodedQuery =
-                query.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed),
-              let url =
-                URL(string: "https://api.github.com/search/repositories?q=\(encodedQuery)")
+                query.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed)
         else { return }
         
-        let request = URLRequest(url: url)
-        let decoder = JSONDecoder()
-        decoder.keyDecodingStrategy = .convertFromSnakeCase
-        
-        task = URLSession.shared.dataTask(with: request, completionHandler: {
-            [weak self] (data, _, error) in
-            guard let data = data else { return }
-            
-            do {
-                let repositories: Repositories = try decoder.decode(Repositories.self, from: data)
-                self?.repositories = repositories.items
-                completion(repositories.items)
-                
-            } catch let error {
-                print(error.localizedDescription)
+        let client = GitHubClient(httpClient: URLSession.shared)
+        let request = GitHubAPI.SearchRepositories(keyword: encodedQuery)
+        client.send(request: request) { result in
+            switch result {
+            case .success(let response):
+                completion(Result.success(response.items))
+            case .failure(let error):
+                completion(Result.failure(error))
             }
-        })
-        task?.resume()
+        }
     }
     
     func cancel() {
