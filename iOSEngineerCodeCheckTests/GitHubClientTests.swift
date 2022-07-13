@@ -69,4 +69,24 @@ class GitHubClientTests: XCTestCase {
         
         wait(for: [apiExpectation], timeout: 3)
     }
+    
+    func testFailureByResponseParseError() {
+        httpClient.result = makeHTTPClientResult(
+            statusCode: 200,
+            json: "{}")
+        
+        let request = GitHubAPI.SearchRepositories(keyword: "swift")
+        let apiExpectation = expectation(description: "")
+        gitHubClient.send(request: request) { result in
+            switch result {
+            case .failure(.responseParseError):
+                break
+            default:
+                XCTFail("unexpected result: \(result)")
+            }
+            apiExpectation.fulfill()
+        }
+        
+        wait(for: [apiExpectation], timeout: 3)
+    }
 }
