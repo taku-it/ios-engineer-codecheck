@@ -43,3 +43,21 @@ Issues を確認した上、本プロジェクトを [**Duplicate** してくだ
 ## 参考記事
 
 提出された課題の評価ポイントに関しては、[こちらの記事](https://qiita.com/lovee/items/d76c68341ec3e7beb611)に詳しく書かれてありますので、ぜひご覧ください。
+
+
+## 利用したライブラリ
+
+[SDWebImage](https://github.com/SDWebImage/SDWebImage)
+
+[PKHUD](https://github.com/pkluz/PKHUD)
+
+## 導入したアーキテクチャ
+
+MVPアーキテクチャ
+新機能実装などのしやすさから導入しました。
+
+## 画面一覧
+
+![Simulator Screen Shot - iPhone 11 - 2022-07-13 at 19 07 01](https://user-images.githubusercontent.com/58894683/178763643-858453a4-7f07-46e2-8a6b-685c57c1b40b.png) ![simulator_screenshot_D05B7C83-0C78-4F17-9162-8F87A32019E7](https://user-images.githubusercontent.com/58894683/178763689-1a8e7bef-027a-4885-bfb7-058f53926d47.png) ![simulator_screenshot_EF97B08D-2A81-4EB5-B3CB-0951AD738E70](https://user-images.githubusercontent.com/58894683/178763733-15b0ed32-81b5-4be4-86e1-c820f5fda692.png)
+
+
