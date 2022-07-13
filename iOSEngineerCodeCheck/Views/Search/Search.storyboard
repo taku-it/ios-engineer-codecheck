@@ -7,7 +7,7 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Root View Controller-->
+        <!-- -->
         <scene sceneID="Ld5-sY-52X">
             <objects>
                 <tableViewController id="s9K-bg-FZ5" customClass="SearchRepositoryViewController" customModule="iOSEngineerCodeCheck" customModuleProvider="target" propertyAccessControl="all" sceneMemberID="viewController">
@@ -51,7 +51,7 @@
                             <outlet property="delegate" destination="s9K-bg-FZ5" id="z62-Ka-2KA"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Root View Controller" id="R38-fc-CJL"/>
+                    <navigationItem key="navigationItem" title=" " id="R38-fc-CJL"/>
                     <connections>
                         <outlet property="searchBar" destination="wlY-pm-llL" id="tKh-Mg-Kxb"/>
                     </connections>

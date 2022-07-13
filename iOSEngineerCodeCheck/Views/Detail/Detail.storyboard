@@ -8,7 +8,7 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Detail View Controller-->
+        <!-- -->
         <scene sceneID="WdX-P8-Nfs">
             <objects>
                 <viewController id="OXZ-V3-0p1" customClass="DetailViewController" customModule="iOSEngineerCodeCheck" customModuleProvider="target" propertyAccessControl="all" sceneMemberID="viewController">
@@ -82,7 +82,7 @@
                             <constraint firstItem="2jv-DV-UAN" firstAttribute="top" secondItem="jj2-Sq-HMr" secondAttribute="bottom" constant="22.5" id="z6a-W7-SMH"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" id="HOz-Yw-EWs"/>
+                    <navigationItem key="navigationItem" title=" " id="HOz-Yw-EWs"/>
                     <connections>
                         <outlet property="forksLabel" destination="5Nr-Rg-bNl" id="WvA-dT-ga6"/>
                         <outlet property="imageView" destination="bmR-Ev-cTQ" id="MWN-AE-6Ux"/>
