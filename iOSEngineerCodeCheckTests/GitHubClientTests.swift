@@ -31,4 +31,25 @@ class GitHubClientTests: XCTestCase {
         ))
     }
     
+    func testSuccess() {
+        httpClient.result = makeHTTPClientResult(
+            statusCode: 200,
+            json: GitHubAPI.SearchRepositories.Response.exampleJSON)
+        
+        let request = GitHubAPI.SearchRepositories(keyword: "swift")
+        let apiExpectation = expectation(description: "")
+        gitHubClient.send(request: request) { result in
+            switch result {
+            case .success(let response):
+                let repository = response.items.first
+                XCTAssertEqual(repository?.fullName, "apple/swift")
+            default:
+                XCTFail("unexpected result: \(result)")
+            }
+            apiExpectation.fulfill()
+        }
+        
+        wait(for: [apiExpectation], timeout: 3)
+    }
+    
 }
