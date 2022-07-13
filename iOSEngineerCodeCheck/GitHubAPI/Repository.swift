@@ -8,10 +8,6 @@
 
 import Foundation
 
-struct Repositories: Codable {
-    let items: [Repository]
-}
-
 struct Repository: Codable {
     let id: Int
     let fullName: String
