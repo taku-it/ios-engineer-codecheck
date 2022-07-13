@@ -18,6 +18,7 @@ final class DetailViewController: UIViewController {
     @IBOutlet weak var watchersLabel: UILabel!
     @IBOutlet weak var forksLabel: UILabel!
     @IBOutlet weak var issuesLabel: UILabel!
+    @IBOutlet weak var descriptionLabel: UILabel!
     
     var repository: Repository?
     func inject(repository: Repository) {
@@ -26,7 +27,11 @@ final class DetailViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        setup()
+        getImage()
+    }
+    
+    func setup() {
         guard let repository = repository else { return }
         languageLabel.text = "Written in \(repository.language ?? "")"
         stargazersLabel.text = "\(repository.stargazersCount) stars"
@@ -34,7 +39,7 @@ final class DetailViewController: UIViewController {
         forksLabel.text = "\(repository.forksCount) forks"
         issuesLabel.text = "\(repository.openIssuesCount) open issues"
         titleLabel.text = repository.fullName
-        getImage()
+        descriptionLabel.text = repository.description
     }
     
     func getImage() {
