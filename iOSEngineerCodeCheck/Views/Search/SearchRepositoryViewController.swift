@@ -56,7 +56,7 @@ extension SearchRepositoryViewController: UISearchBarDelegate {
 
 extension SearchRepositoryViewController: SearchRepositoryPresenterOutput {
     
-    func updateRepository() {
+    func updateRepository(_ repositories: [Repository]) {
         tableView.reloadData()
     }
     
