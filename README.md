@@ -45,7 +45,7 @@ Issues を確認した上、本プロジェクトを [**Duplicate** してくだ
 提出された課題の評価ポイントに関しては、[こちらの記事](https://qiita.com/lovee/items/d76c68341ec3e7beb611)に詳しく書かれてありますので、ぜひご覧ください。
 
 
-## 利用したライブラリ
+## 利用したライブラリ(CocoaPods)
 
 [SDWebImage](https://github.com/SDWebImage/SDWebImage)
 
