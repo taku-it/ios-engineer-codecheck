@@ -17,5 +17,6 @@ target 'iOSEngineerCodeCheck' do
   end
 
 pod 'SDWebImage'
+pod 'PKHUD'
 
 end
