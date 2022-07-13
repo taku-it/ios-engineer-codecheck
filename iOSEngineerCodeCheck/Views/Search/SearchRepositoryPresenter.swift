@@ -17,7 +17,7 @@ protocol SearchRepositoryPresenterInput {
 }
 
 protocol SearchRepositoryPresenterOutput: AnyObject {
-    func updateRepository()
+    func updateRepository(_ repositories: [Repository])
     func transitionToDetail(repository: Repository)
 }
 
@@ -50,9 +50,17 @@ final class SearchRepositoryPresenter: SearchRepositoryPresenterInput {
         guard let query = text else { return }
         guard !query.isEmpty else { return }
         
-        model.searchRepositories(query: query) { [weak self] (repositories) in
-            DispatchQueue.main.async {
-                self?.view?.updateRepository()
+        model.searchRepositories(query: query) { [weak self] result in
+            switch result {
+            case .success(let repositories):
+                self?.repositories = repositories
+                
+                DispatchQueue.main.async {
+                    self?.view?.updateRepository(repositories)
+                }
+            case .failure(let error):
+                //ユーザーにエラー発生を伝える(後述)
+                print(error)
             }
         }
     }
