@@ -20,7 +20,7 @@ final class DetailViewController: UIViewController {
     @IBOutlet weak var issuesLabel: UILabel!
     @IBOutlet weak var descriptionLabel: UILabel!
     
-    var repository: Repository?
+    private var repository: Repository?
     func inject(repository: Repository) {
         self.repository = repository
     }
@@ -47,4 +47,10 @@ final class DetailViewController: UIViewController {
         imageView.sd_setImage(with: URL(string: repository.owner.avatarUrl), completed: nil)
     }
     
+    @IBAction func tapViewOnBrowser(_ sender: Any) {
+        guard let webVC = UIStoryboard(name: "Web", bundle: nil).instantiateInitialViewController() as? WebViewController
+        else { return }
+        webVC.inject(urlString: repository?.htmlUrl)
+        navigationController?.pushViewController(webVC, animated: true)
+    }
 }

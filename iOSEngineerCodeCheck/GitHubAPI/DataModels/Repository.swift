@@ -13,6 +13,7 @@ struct Repository: Codable {
     let fullName: String
     let language: String?
     let description: String?
+    let htmlUrl: String
     let stargazersCount: Int
     let watchersCount: Int
     let forksCount: Int
