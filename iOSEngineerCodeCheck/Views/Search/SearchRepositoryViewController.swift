@@ -22,6 +22,13 @@ final class SearchRepositoryViewController: UITableViewController {
         super.viewDidLoad()
         
         searchBar.delegate = self
+        setupTableViewCell()
+    }
+    
+    func setupTableViewCell() {
+        tableView.estimatedRowHeight = 100
+        tableView.rowHeight = UITableView.automaticDimension
+        tableView.register(UINib(nibName: "RepositoryCell", bundle: nil), forCellReuseIdentifier: "RepositoryCell")
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -29,10 +36,13 @@ final class SearchRepositoryViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = UITableViewCell()
-        let repository = presenter.repository(forRow: indexPath.row)
-        cell.textLabel?.text = repository?.fullName
-        cell.detailTextLabel?.text = repository?.language
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: "RepositoryCell") as? RepositoryCell
+        else { return UITableViewCell() }
+        
+        if let repository = presenter.repository(forRow: indexPath.row) {
+            cell.configure(repository: repository)
+        }
+        
         return cell
     }
     
